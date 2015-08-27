@@ -175,12 +175,14 @@ $ npm install require-4cf
 
 ##### Install into ColdFusion Requests
 
+Copy just the folder ./require-4cf/require and put it relative to your application(s) files. Using the Application.cfc demo below, is one way to make require() available to all requests.
+
 Application.cfc
 ```cfc
 Component output="no"{
 	function onRequest(targetPage) output="yes"{
-		var require = new require.require();
-		include targetPage;
+		var require = new require.require();//path-to invoke require.cfc, which returns a function
+		include targetPage;//templates can now call require()
 		return;
 	}
 }
