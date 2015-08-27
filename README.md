@@ -46,7 +46,7 @@ template.cfm
 - [General Tips for Converting](#general-tips-for-converting)
 - [Provided Javascript Conversions](#provided-javascript-conversions)
 - [Provided NodeJs Module Functionality](#provided-nodejs-modules-and-functionality)
-- [Installation Recommendation](#installation-recommendation)
+- [Installation Recommendations](#installation-recommendations)
 - [EXAMPLE USAGE](#example-usage)
 	- [Test This Code](#test-this-code)
 		- [ColdFusion](#coldfusion)
