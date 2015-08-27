@@ -6,9 +6,9 @@ Adds require() method in ColdFusion that works a lot like the require() in NodeJ
 
 ## Teaser Example
 
-secrets.json
+secrets.json - arbitrary file containing pws 
 ```json
-{"mailPassword":"easy-as-123"}
+{"mailPassword":"easy-as-123", "dbPassword":"also-easy-123"}
 ```
 
 module.js
@@ -18,10 +18,13 @@ module.js
 var secrets = require('./secrets');
 module.exports.secrets = secrets;
 
-module.exports.test = function(ob){
+module.exports.test = function(){
     Math.abs(-2.22);
     Math.ceil(3.33);
     isNaN('yo');
+};
+
+module.exports.echoJSON = function(ob){
     return JSON.stringify(ob);
 };
 ```
@@ -29,9 +32,10 @@ module.exports.test = function(ob){
 template.cfm
 ```cfm
 <cfScript>
-    variables.module = require('./module.js');
-    variables.module.test({someObject:434});
-    writeDump(var=variables.module.secrets);
+    module = require('./module.js');
+    module.test();
+    module.echoJSON({someObject:434});
+    writeDump(var=module.secrets);
 </cfScript>
 ```
 
@@ -119,7 +123,7 @@ When you make .js files as your conversion files, they may now become available 
 - This would expose your code logic (bad. very bad)
 - This tool can require .cfm files. Cfm files require a cfScript declaration though.
 - Other than .json &amp; .cfm any other file exension or none, will be treated as a .js file
-	- Remember you are converting CFML away from NodeJs. Going into production with your conversions while still running CFML code is not recommended and is advised against.
+- Remember you are converting CFML away from NodeJs. Going into production with your conversions while still running CFML code is not recommended and is advised against.
 
 ### General Tips for Converting
 
@@ -165,7 +169,7 @@ Conversion logic can be extended by editing ./require/jsConverts.cfm
 
 Provided modules can be extended by editing ./require/modules/
 
-#### Installation Recommendations
+### Installation Recommendations
 
 If you have NodeJs & npm installed, get the files installed the fastest via:
 
@@ -173,7 +177,7 @@ If you have NodeJs & npm installed, get the files installed the fastest via:
 $ npm install require-4cf
 ```
 
-##### Install into ColdFusion Requests
+#### Install into ColdFusion Requests
 
 Copy just the folder ./require-4cf/require and put it relative to your application(s) files. Using the Application.cfc demo below, is one way to make require() available to all requests.
 
