@@ -80,6 +80,7 @@ You should have the following in mind before casting CF code to NodeJs.
 	- cfQuery (recommend: [sequelize](https://www.npmjs.com/package/sequelize).query())
 	- cfPdf (recommend: [phantom](https://www.npmjs.com/package/phantom) & [phantomjs](https://www.npmjs.com/package/phantomjs))
 	- etc.
+- This require() module was built and tested on ColdFusion 10 & 11 for Mac and Windows
 
 ## What Should I Know?
 
@@ -171,13 +172,11 @@ Conversion logic can be extended by editing ./require/jsConverts.cfm
 
 In this same folder as this README.md file, request the index.cfm via ColdFusion accessible URL address.
 
-This require() module was built and tested on ColdFusion 11 but should be compatible with a view versions back.
-
 ##### NodeJs
 
 Have NodeJs installed and perform one of the following:
 
-- In Terminal/CMD, navigate to ./tests/NodeJs/ and run "node index"
+- In Terminal/CMD, navigate to the require-4cf folder and run "npm test"
 
 #### Installation Recommendation
 Application.cfc
@@ -279,7 +278,7 @@ But in-case you need an MIT license, here it is below:
 
 Copyright (c) 2015 Acker Apple
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
