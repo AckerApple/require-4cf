@@ -1,0 +1,23 @@
+{
+  "name": "require-4cf",
+  "version": "0.0.0",
+  "description": "Exceptional tool to aide in molding ColdFusion code into NodeJs code",
+  "main": "test.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AckerApple/require-4cf.git"
+  },
+  "keywords": [
+    "require",
+    "CFML",
+    "coldfusion"
+  ],
+  "author": "Acker Apple",
+  "license": "MIT"
+}
