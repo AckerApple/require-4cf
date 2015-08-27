@@ -8,20 +8,24 @@ Adds require() method in ColdFusion that works a lot like the require() in NodeJ
 
 secrets.json - arbitrary file containing pws 
 ```json
-{"mailPassword":"easy-as-123", "dbPassword":"also-easy-123"}
+{
+	"mailPassword":"easy-as-123",
+	"dbPassword":"also-easy-123"
+}
 ```
 
 module.js - file that can run in both NodeJs & CFML
 ```js
 "use strict";//does nothing for CFML
 var secrets = require('./secrets');
+var assert = require('assert');
 
 module.exports.secrets = secrets;
 
 module.exports.test = function(){
-    Math.abs(-2.22);
-    Math.ceil(3.33);
-    isNaN('yo');
+    assert.equal(Math.abs(-2.22), 2.22);
+    assert.equal(Math.ceil(3.33), 4);
+    assert.equal(isNaN('yo'), true);
 };
 
 module.exports.echoAsJSON = function(ob){
@@ -34,9 +38,11 @@ template.cfm - file that includes above examples
 <cfScript>
     module = require('./module.js');
     module.test();
-    writeDump(var=module.secrets);
+    writeDump(var=module.secrets, abort=0);
 </cfScript>
-<cfOutput>#module.echoAsJSON({someObject:434})#</cfOutput>
+<cfOutput>
+	#module.echoAsJSON({someObject:434})#
+</cfOutput>
 ```
 
 ## Table of Contents
