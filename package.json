@@ -1,6 +1,6 @@
 {
   "name": "require-4cf",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Exceptional tool to aide in molding ColdFusion code into NodeJs code",
   "main": "test.js",
   "directories": {
