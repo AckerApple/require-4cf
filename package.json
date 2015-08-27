@@ -18,6 +18,6 @@
     "CFML",
     "coldfusion"
   ],
-  "author": "Acker Apple",
+  "author": {"name":"Acker Apple", "email":"AckerApple@users.noreply.github.com", "url":"https://plus.google.com/108604932521122539441/about/"},
   "license": "MIT"
 }
