@@ -206,7 +206,7 @@ secrets.js
 ```json
 {"secretPassword":"password"}
 ```
-template.cfm<br>
+template.cfm
 ```cfm
 <cfScript>
     //Example 0
