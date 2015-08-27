@@ -46,11 +46,11 @@ template.cfm
 - [General Tips for Converting](#general-tips-for-converting)
 - [Provided Javascript Conversions](#provided-javascript-conversions)
 - [Provided NodeJs Module Functionality](#provided-nodejs-modules-and-functionality)
+- [Installation Recommendation](#installation-recommendation)
 - [EXAMPLE USAGE](#example-usage)
 	- [Test This Code](#test-this-code)
 		- [ColdFusion](#coldfusion)
 		- [NodeJs](#nodejs)
-	- [Installation Recommendation](#installation-recommendation)
 	- [Require .json file](#require-json-file)
 	- [Require .js file or any non .cfm or .json file](#require-js-file-or-any-non-cfm-or-json-file)
 	- [Require .cfm file](#require-cfm-file)
@@ -144,6 +144,8 @@ Comes with some really handy common CFML-to-NodeJs conversion logic
 - Math.ceil()
 - console.log (does nothing, just prevents error when called in CF)
 
+Conversion logic can be extended by editing ./require/jsConverts.cfm
+
 ### Provided NodeJs Modules and Functionality
 
 - __dirname
@@ -161,8 +163,28 @@ Comes with some really handy common CFML-to-NodeJs conversion logic
 	- fs.rmdirSync()
 	- fs.writeFileSync()
 
+Provided modules can be extended by editing ./require/modules/
 
-Conversion logic can be extended by editing ./require/jsConverts.cfm
+#### Installation Recommendations
+
+If you have NodeJs & npm installed, get the files installed the fastest via:
+
+```bash
+$ npm install require-4cf
+```
+
+##### Install into ColdFusion Requests
+
+Application.cfc
+```cfc
+Component output="no"{
+	function onRequest(targetPage) output="yes"{
+		var require = new require.require();
+		include targetPage;
+		return;
+	}
+}
+```
 
 ## EXAMPLE USAGE
 
@@ -174,21 +196,7 @@ In this same folder as this README.md file, request the index.cfm via ColdFusion
 
 ##### NodeJs
 
-Have NodeJs installed and perform one of the following:
-
 - In Terminal/CMD, navigate to the require-4cf folder and run "npm test"
-
-#### Installation Recommendation
-Application.cfc
-```cfc
-Component output="no"{
-	function onRequest(targetPage) output="yes"{
-		var require = new require.require();
-		include targetPage;
-		return;
-	}
-}
-```
 
 #### Require .json file
 
@@ -225,9 +233,11 @@ template.cfm
 #### Require .cfm file
 module.cfm
 ```cfm
-module.exports.test = function(){
-    return 22;
-};
+<cfScript>
+	module.exports.test = function(){
+	    return 22;
+	};
+</cfScript>
 ```
 template.cfm
 ```cfm
