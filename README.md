@@ -11,11 +11,11 @@ secrets.json - arbitrary file containing pws
 {"mailPassword":"easy-as-123", "dbPassword":"also-easy-123"}
 ```
 
-module.js
+module.js - file that can run in both NodeJs & CFML
 ```js
 "use strict";//does nothing for CFML
-
 var secrets = require('./secrets');
+
 module.exports.secrets = secrets;
 
 module.exports.test = function(){
@@ -24,19 +24,19 @@ module.exports.test = function(){
     isNaN('yo');
 };
 
-module.exports.echoJSON = function(ob){
+module.exports.echoAsJSON = function(ob){
     return JSON.stringify(ob);
 };
 ```
 
-template.cfm
+template.cfm - file that includes above examples
 ```cfm
 <cfScript>
     module = require('./module.js');
     module.test();
-    module.echoJSON({someObject:434});
     writeDump(var=module.secrets);
 </cfScript>
+<cfOutput>#module.echoAsJSON({someObject:434})#</cfOutput>
 ```
 
 ## Table of Contents
